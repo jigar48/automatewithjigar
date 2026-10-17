@@ -29,6 +29,9 @@
   ]
 }
 </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#070d1f; --bg2:#0b1430; --card:#0e1a3a; --line:#1b2a52;
@@ -119,6 +122,11 @@ h2{font-size:clamp(1.6rem,3.4vw,2.3rem); margin:6px 0 12px; letter-spacing:-.01e
 .feature{display:grid; grid-template-columns:1fr 1.15fr; gap:28px; align-items:center}
 .feature figure{margin:0}
 .feature img{width:100%; height:auto; display:block; border-radius:10px; border:1px solid var(--line)}
+.trio{display:grid; grid-template-columns:1fr; gap:18px; margin-top:14px}
+.trio .shot{margin:0}
+.shot{margin:14px 0 0}
+.shot img{width:100%; height:auto; display:block; border-radius:8px; border:1px solid var(--line)}
+.shot figcaption{margin-top:6px; font-size:.74rem; color:var(--muted)}
 .feature figcaption{margin-top:8px; font-size:.78rem; color:var(--muted)}
 .note{
   margin-top:28px; padding:16px 20px; border-left:3px solid var(--accent);
@@ -150,6 +158,7 @@ footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10
 @media (max-width:640px){
   nav ul li:not(:last-child){display:none}
   .feature{grid-template-columns:1fr}
+  .trio{grid-template-columns:1fr}
   .g3,.g2,.steps{grid-template-columns:1fr}
   .about{grid-template-columns:1fr; justify-items:start}
   .hero{padding:64px 0 56px}
@@ -159,10 +168,82 @@ footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10
   html{scroll-behavior:auto}
   .card{transition:none}
 }
+
+/* ===== elegance layer ===== */
+:root{--serif:"Instrument Serif",Georgia,"Times New Roman",serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace; --ease:cubic-bezier(.2,.7,.2,1)}
+body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; font-feature-settings:"cv11","ss01"}
+h1,h2,.hero h1,.contact h2{font-family:var(--serif); font-weight:400; letter-spacing:-.015em}
+.hero h1{font-size:clamp(2.8rem,7vw,5.2rem); line-height:1.02; max-width:14ch}
+h2{font-size:clamp(2rem,4.4vw,3rem); line-height:1.1}
+.hero h1 em{font-style:italic; background:linear-gradient(100deg,#7cc0ff,#4da3ff 40%,#b8dcff 60%,#4da3ff); background-size:220% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:shimmer 7s ease-in-out infinite}
+.eyebrow,.num,.case .label,.tags li,.step::before,.facts{font-family:var(--mono)}
+.eyebrow{font-size:.72rem; letter-spacing:.18em}
+.num{font-size:.78rem; display:flex; align-items:center; gap:12px}
+.num::after{content:""; height:1px; width:56px; background:linear-gradient(90deg,var(--accent),transparent)}
+.card h3,.step h3{font-weight:600; letter-spacing:-.005em}
+.brand{font-family:var(--serif); font-size:1.35rem; font-weight:400; letter-spacing:0}
+.brand span{font-style:italic}
+header.site{transition:background .3s,box-shadow .3s}
+header.site.scrolled{background:rgba(7,13,31,.92); box-shadow:0 8px 30px rgba(0,0,0,.35)}
+nav a{position:relative}
+nav a:not(.cta-mini)::after{content:""; position:absolute; left:0; right:100%; bottom:-6px; height:1px; background:var(--accent); transition:right .35s var(--ease)}
+nav a:not(.cta-mini):hover::after{right:0}
+.progress{position:fixed; top:0; left:0; height:2px; width:100%; transform-origin:0 50%; transform:scaleX(0); background:linear-gradient(90deg,var(--accent),#b8dcff); z-index:60}
+
+/* hero atmosphere */
+.hero{isolation:isolate}
+.orb{position:absolute; border-radius:50%; filter:blur(70px); opacity:.5; z-index:-1; pointer-events:none}
+.orb.a{width:380px; height:380px; right:6%; top:-60px; background:#2a6fd6; animation:drift 16s ease-in-out infinite alternate}
+.orb.b{width:300px; height:300px; left:-60px; bottom:-80px; background:#1c4fa0; opacity:.35; animation:drift 20s ease-in-out infinite alternate-reverse}
+.hero::after{content:""; position:absolute; inset:0; z-index:-1; pointer-events:none; opacity:.35;
+  background-image:radial-gradient(rgba(124,192,255,.25) 1px,transparent 1px); background-size:28px 28px;
+  -webkit-mask-image:radial-gradient(ellipse at 70% 30%,#000,transparent 70%); mask-image:radial-gradient(ellipse at 70% 30%,#000,transparent 70%)}
+.hero svg.net line{stroke-dasharray:3 7; animation:flow 5s linear infinite}
+.hero svg.net circle{transform-box:fill-box; transform-origin:center; animation:pulse 3.4s ease-in-out infinite}
+.hero svg.net circle:nth-child(2n){animation-delay:-1.1s}
+.hero svg.net circle:nth-child(3n){animation-delay:-2.2s}
+.hero .wrap > *{animation:rise .9s var(--ease) both}
+.hero .wrap > :nth-child(1){animation-delay:.05s}.hero .wrap > :nth-child(2){animation-delay:.18s}
+.hero .wrap > :nth-child(3){animation-delay:.32s}.hero .wrap > :nth-child(4){animation-delay:.46s}.hero .wrap > :nth-child(5){animation-delay:.6s}
+.hero p.lead{font-size:1.18rem; line-height:1.65}
+
+/* buttons */
+.btn{transition:transform .25s var(--ease),border-color .25s,background .25s,box-shadow .25s}
+.btn:hover{transform:translateY(-2px)}
+.btn.primary{box-shadow:0 8px 28px rgba(77,163,255,.25)}
+.btn.primary:hover{box-shadow:0 12px 36px rgba(77,163,255,.4)}
+.btn::after{content:"\2192"; margin-left:.45em; display:inline-block; transition:transform .25s var(--ease)}
+.btn:hover::after{transform:translateX(4px)}
+
+/* cards */
+.card,.step{position:relative; transition:border-color .3s,transform .4s var(--ease),box-shadow .4s,background .3s}
+.card:hover,.step:hover{transform:translateY(-4px); border-color:#2c4686; box-shadow:0 18px 40px rgba(0,0,0,.35);
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(77,163,255,.13),transparent 45%),var(--card)}
+.shot img,.feature img{transition:transform .6s var(--ease),border-color .3s}
+.shot img:hover,.feature img:hover{transform:scale(1.015); border-color:#2c4686}
+.tags li{transition:background .25s,transform .25s}
+.tags li:hover{background:rgba(77,163,255,.2); transform:translateY(-1px)}
+section{position:relative}
+section.alt{background:linear-gradient(180deg,var(--bg2),#0a1229)}
+
+/* scroll reveal (only when JS is on) */
+.js .reveal{opacity:0; transform:translateY(22px); transition:opacity .8s var(--ease),transform .8s var(--ease); transition-delay:var(--d,0s)}
+.js .reveal.in{opacity:1; transform:none}
+
+@keyframes rise{from{opacity:0; transform:translateY(20px)}to{opacity:1; transform:none}}
+@keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes drift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(-40px,30px,0) scale(1.15)}}
+@keyframes flow{to{stroke-dashoffset:-20}}
+@keyframes pulse{0%,100%{transform:scale(1); opacity:1}50%{transform:scale(1.7); opacity:.55}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important; transition:none!important}
+  .js .reveal{opacity:1; transform:none}
+}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"></div>
 
 <header class="site">
   <div class="wrap">
@@ -183,6 +264,7 @@ footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10
 
 <!-- HERO -->
 <div class="hero" id="top">
+  <span class="orb a" aria-hidden="true"></span><span class="orb b" aria-hidden="true"></span>
   <svg class="net" viewBox="0 0 600 400" aria-hidden="true" fill="none" stroke="#4da3ff" stroke-width="1">
     <g opacity=".5">
       <line x1="40" y1="60" x2="160" y2="120"/><line x1="160" y1="120" x2="260" y2="70"/>
@@ -264,10 +346,11 @@ footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10
         <div class="label">Pharmacy platform</div>
         <h3>Pharmacy systems integration</h3>
         <ul>
-          <li>Integrated multiple pharmacy management systems, including Pioneer and Liberty.</li>
+          <li>Integrated multiple pharmacy management systems, including Pioneer and Liberty, for a business with 400+ stores.</li>
           <li>Synced pharmacy and customer data with GoHighLevel for CRM and marketing automation.</li>
           <li>Built RPA bots for repetitive pharmacy-side workflows.</li>
         </ul>
+        <figure class="shot"><img src="pharmacy-integration.png" alt="Diagram of pharmacy systems feeding an integration layer into GoHighLevel" loading="lazy"><figcaption>Illustrative diagram, sample data only.</figcaption></figure>
         <ul class="tags"><li>Python</li><li>RPA</li><li>REST APIs</li><li>GoHighLevel</li></ul>
       </article>
 
@@ -281,15 +364,21 @@ footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10
         <ul class="tags"><li>Python</li><li>WebSocket</li><li>FastAPI</li><li>Telegram</li></ul>
       </article>
 
-      <article class="card case">
+      <article class="card case wide">
         <div class="label">E-commerce</div>
-        <h3>Adobe Commerce modules</h3>
+        <h3>Adobe Commerce: complex builds</h3>
         <ul>
-          <li>Mobile OTP login over SMS (MSG91) for an Indian store.</li>
-          <li>DPDPA consent capture and multi-store routing.</li>
-          <li>Order-grid and invoice-capture fixes, plus containerised dev environments.</li>
+          <li>Custom box studio: customers design their own custom box.</li>
+          <li>WhatsApp sticker integration connected to the store.</li>
+          <li>Smart alert dashboard and smart shipping rates for box orders.</li>
+          <li>Mobile OTP login over SMS (MSG91), DPDPA consent and multi-store routing.</li>
+          <li>Managing a network of 400+ pharmacy stores.</li>
         </ul>
-        <ul class="tags"><li>Adobe Commerce</li><li>PHP</li><li>Docker</li><li>MySQL</li></ul>
+        <div class="trio">
+          <figure class="shot"><img src="commerce-builds.png" alt="Overview of complex e-commerce builds" loading="lazy"><figcaption>Overview of builds</figcaption></figure>
+          <figure class="shot"><img src="commerce-otp-flow.png" alt="Mobile OTP login flow" loading="lazy"><figcaption>Mobile OTP login. Illustrative diagram, sample data only.</figcaption></figure>
+        </div>
+        <ul class="tags"><li>Adobe Commerce</li><li>PHP</li><li>Docker</li><li>MySQL</li><li>Shopify</li><li>WooCommerce</li><li>Odoo</li></ul>
       </article>
 
       <article class="card case">
@@ -299,17 +388,52 @@ footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10
           <li>A routing backend that sends each question to the best-suited model.</li>
           <li>A dashboard on top for monitoring and iteration.</li>
         </ul>
+        <figure class="shot"><img src="ai-routing.png" alt="Multi-LLM routing diagram with sample dashboard" loading="lazy"><figcaption>Illustrative diagram, sample data only.</figcaption></figure>
         <ul class="tags"><li>Python</li><li>LLM routing</li><li>FastAPI</li></ul>
+      </article>
+
+      <article class="card case wide feature">
+        <div>
+          <div class="label">Cloud</div>
+          <h3>Cloud on AWS</h3>
+          <ul>
+            <li>Scheduled jobs with EventBridge and Lambda, email delivery with SES.</li>
+            <li>App servers in private subnets on Auto Scaling, with outbound access through NAT.</li>
+            <li>Security groups and least-privilege IAM roles, with containers on Docker and Podman.</li>
+          </ul>
+          <ul class="tags"><li>Lambda</li><li>EventBridge</li><li>SES</li><li>Auto Scaling</li><li>NAT</li><li>IAM</li><li>Podman</li></ul>
+        </div>
+        <figure><img src="aws-architecture.png" alt="AWS reference architecture diagram" loading="lazy"><figcaption>Illustrative reference pattern, not a specific client's setup.</figcaption></figure>
+      </article>
+
+      <article class="card case wide feature">
+        <div>
+          <div class="label">Automation and RPA</div>
+          <h3>Bots you can trust to run unattended</h3>
+          <ul>
+            <li>Every run is logged with duration and status.</li>
+            <li>Failures retry, then alert through Telegram, Slack or email.</li>
+            <li>A run monitor shows what ran, what failed and what needs attention.</li>
+          </ul>
+          <ul class="tags"><li>Playwright</li><li>Python</li><li>Alerting</li></ul>
+        </div>
+        <figure><img src="rpa-monitor.png" alt="Automation run monitor with sample data" loading="lazy"><figcaption>Illustrative run monitor, sample data only.</figcaption></figure>
       </article>
 
       <article class="card case wide">
         <div class="label">Content automation</div>
         <h3>Social and video pipelines</h3>
         <ul>
-          <li>Automation for Instagram, YouTube and LinkedIn workflows.</li>
-          <li>Short Factory: an automated pipeline for short-form video content at volume.</li>
+          <li><b>Instagram content engine:</b> LLM-written captions and ranked hooks, branded images, carousels and reels, published via the Instagram Graph API with a review dashboard and cron autopilot.</li>
+          <li><b>Shorts Factory:</b> a faceless YouTube Shorts pipeline from idea to upload, with a human approval gate at every stage and resumable runs.</li>
+          <li><b>LinkedIn agent:</b> profile scraping, AI-suggested improvements you approve, weekly content planning, branded visuals and auto-posting through Playwright.</li>
         </ul>
-        <ul class="tags"><li>Python</li><li>Playwright</li><li>LLMs</li></ul>
+        <div class="trio">
+          <figure class="shot"><img src="instagram-engine.png" alt="Instagram content engine diagram" loading="lazy"><figcaption>Instagram content engine</figcaption></figure>
+          <figure class="shot"><img src="shorts-factory.png" alt="Shorts Factory pipeline diagram" loading="lazy"><figcaption>Shorts Factory</figcaption></figure>
+          <figure class="shot"><img src="linkedin-agent.png" alt="LinkedIn agent diagram" loading="lazy"><figcaption>LinkedIn agent. Illustrative diagrams, sample data only.</figcaption></figure>
+        </div>
+        <ul class="tags"><li>Python</li><li>FastAPI</li><li>Playwright</li><li>LLMs</li><li>FFmpeg</li></ul>
       </article>
 
     </div>
@@ -415,5 +539,25 @@ footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10
   </div>
 </footer>
 
+<script>
+(function(){
+  var d=document.documentElement; d.classList.add('js');
+  var bar=document.querySelector('.progress'), hdr=document.querySelector('header.site');
+  function onScroll(){
+    var h=d.scrollHeight-innerHeight; if(bar) bar.style.transform='scaleX('+(h>0?Math.min(scrollY/h,1):0)+')';
+    if(hdr) hdr.classList.toggle('scrolled',scrollY>24);
+  }
+  addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  var els=document.querySelectorAll('section h2,section .sub,section .num,.card,.step,.note,.about,.contact .btns');
+  els.forEach(function(el,i){ el.classList.add('reveal'); el.style.setProperty('--d',((i%3)*0.08)+'s'); });
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting){e.target.classList.add('in'); io.unobserve(e.target);} });},{threshold:.05,rootMargin:'0px 0px -8% 0px'});
+    els.forEach(function(el){io.observe(el)});
+  } else { els.forEach(function(el){el.classList.add('in')}); }
+  document.querySelectorAll('.card,.step').forEach(function(c){
+    c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect(); c.style.setProperty('--mx',(e.clientX-r.left)+'px'); c.style.setProperty('--my',(e.clientY-r.top)+'px');});
+  });
+})();
+</script>
 </body>
 </html>

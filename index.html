@@ -115,6 +115,11 @@ h2{font-size:clamp(1.6rem,3.4vw,2.3rem); margin:6px 0 12px; letter-spacing:-.01e
 .case .label{font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:600}
 .case ul{margin:10px 0 0; padding-left:18px; color:var(--muted); font-size:.95rem}
 .case li{margin:4px 0}
+.wide{grid-column:1/-1}
+.feature{display:grid; grid-template-columns:1fr 1.15fr; gap:28px; align-items:center}
+.feature figure{margin:0}
+.feature img{width:100%; height:auto; display:block; border-radius:10px; border:1px solid var(--line)}
+.feature figcaption{margin-top:8px; font-size:.78rem; color:var(--muted)}
 .note{
   margin-top:28px; padding:16px 20px; border-left:3px solid var(--accent);
   background:rgba(77,163,255,.06); color:var(--muted); border-radius:0 10px 10px 0; font-size:.95rem;
@@ -144,6 +149,7 @@ footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10
 }
 @media (max-width:640px){
   nav ul li:not(:last-child){display:none}
+  .feature{grid-template-columns:1fr}
   .g3,.g2,.steps{grid-template-columns:1fr}
   .about{grid-template-columns:1fr; justify-items:start}
   .hero{padding:64px 0 56px}
@@ -236,6 +242,24 @@ footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10
     <p class="sub">Most of my work is private, for clients or as personal products. These are anonymized summaries of what I built. I'm happy to walk through architecture and demos on a call.</p>
     <div class="grid g2">
 
+      <article class="card case wide feature">
+        <div>
+          <div class="label">Market data · paper trading</div>
+          <h3>Pulse: daily bias engine</h3>
+          <ul>
+            <li>Scores seven public market signals into one daily SENSEX bias.</li>
+            <li>A VIX gate and a second, confidence-based shadow gate are shown side by side.</li>
+            <li>A paper-trading engine runs six averaging and sizing variants against the same entry and logs every cycle.</li>
+            <li>No broker API. Free public data, SQLite logging and a FastAPI dashboard. Paper trading only.</li>
+          </ul>
+          <ul class="tags"><li>Python</li><li>FastAPI</li><li>asyncio</li><li>SQLite</li></ul>
+        </div>
+        <figure>
+          <img src="pulse-dashboard.png" alt="Illustrative mock-up of the Pulse dashboard showing today's bias, the VIX gate, the shadow gate, bias history and the paper-trading variants" width="1800" height="900" loading="lazy">
+          <figcaption>Illustrative mock-up of the Pulse dashboard, sample data only.</figcaption>
+        </figure>
+      </article>
+
       <article class="card case">
         <div class="label">Pharmacy platform</div>
         <h3>Pharmacy systems integration</h3>
@@ -245,17 +269,6 @@ footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10
           <li>Built RPA bots for repetitive pharmacy-side workflows.</li>
         </ul>
         <ul class="tags"><li>Python</li><li>RPA</li><li>REST APIs</li><li>GoHighLevel</li></ul>
-      </article>
-
-      <article class="card case">
-        <div class="label">Market data · paper trading</div>
-        <h3>Pulse: daily bias engine</h3>
-        <ul>
-          <li>Scores seven public market signals into one daily SENSEX bias.</li>
-          <li>A VIX-gated averaging strategy paper-trades ATM weekly options, run against two baselines side by side.</li>
-          <li>No broker API. Free public data, SQLite logging and a FastAPI dashboard. Paper trading only.</li>
-        </ul>
-        <ul class="tags"><li>Python</li><li>FastAPI</li><li>asyncio</li><li>SQLite</li></ul>
       </article>
 
       <article class="card case">
@@ -289,7 +302,7 @@ footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10
         <ul class="tags"><li>Python</li><li>LLM routing</li><li>FastAPI</li></ul>
       </article>
 
-      <article class="card case">
+      <article class="card case wide">
         <div class="label">Content automation</div>
         <h3>Social and video pipelines</h3>
         <ul>

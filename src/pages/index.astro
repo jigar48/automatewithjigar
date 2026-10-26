@@ -1,0 +1,359 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero from '~/components/widgets/Hero.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import Features from '~/components/widgets/Features.astro';
+import Projects from '~/components/widgets/Projects.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+import Content from '~/components/widgets/Content.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import StructuredData from '~/components/common/StructuredData.astro';
+import { getPermalink } from '~/utils/permalinks';
+
+const metadata = {
+  title: 'Jigar Prajapati | AI Automation, Cloud & E-commerce Integrations',
+  ignoreTitleTemplate: true,
+};
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Jigar Prajapati',
+  url: 'https://jigar48.github.io/automatewithjigar/',
+  jobTitle: 'Freelance software and automation engineer',
+  address: { '@type': 'PostalAddress', addressLocality: 'Ahmedabad', addressRegion: 'Gujarat', addressCountry: 'IN' },
+  sameAs: [
+    'https://github.com/jigar48',
+    'https://linkedin.com/in/buildaiwith-jigar-prajapati',
+    'https://www.upwork.com/freelancers/jigarprajapati4',
+  ],
+};
+
+const note = 'Illustrative diagram, sample data only.';
+---
+
+<Layout metadata={metadata}>
+  <StructuredData slot="head" schema={structuredData} />
+
+  <Hero
+    id="top"
+    tagline="Freelance engineer · Ahmedabad, India"
+    actions={[
+      { variant: 'primary', text: 'Work with me', href: getPermalink('/#contact') },
+      { text: 'See selected work', href: getPermalink('/#work') },
+    ]}
+    image={{ src: '~/assets/images/pulse-dashboard.png', alt: 'Illustrative mock-up of a market-bias dashboard, sample data', aspect: 'auto' }}
+  >
+    <Fragment slot="title">
+      Intelligent <span class="text-accent dark:text-white">automation</span> that replaces manual work.
+    </Fragment>
+    <Fragment slot="subtitle">
+      I build AI agents, RPA and cloud-backed integrations for businesses, from pharmacy systems to e-commerce stores.
+      Systems that run reliably, alert you when something breaks, and hand over cleanly.
+    </Fragment>
+  </Hero>
+
+  <Stats
+    stats={[
+      { amount: '2017', title: 'Building since' },
+      { amount: '400+', title: 'Pharmacy stores managed' },
+      { amount: '4', title: 'E-commerce platforms' },
+      { amount: '8', title: 'Open-source tools' },
+    ]}
+  />
+
+  <Features
+    id="services"
+    tagline="What I do"
+    title="Six areas where manual process becomes a system that runs itself"
+    columns={3}
+    items={[
+      {
+        title: 'AI agents & LLM workflows',
+        description:
+          'Agents and pipelines that connect language models to your tools, with multi-model routing so each task goes to the right model.',
+        icon: 'tabler:robot',
+      },
+      {
+        title: 'Automation & RPA',
+        description:
+          'Playwright bots, scrapers, schedulers and alerting for the repetitive work your team does by hand today.',
+        icon: 'tabler:refresh',
+      },
+      {
+        title: 'Cloud on AWS',
+        description:
+          'Lambda, EventBridge, SES, Auto Scaling, IAM and VPC networking, with containers on Docker and Podman.',
+        icon: 'tabler:cloud',
+      },
+      {
+        title: 'APIs & integrations',
+        description: 'FastAPI services, WebSocket feeds and third-party integrations built to retry, log and stay up.',
+        icon: 'tabler:plug-connected',
+      },
+      {
+        title: 'E-commerce',
+        description: 'Custom features and integrations on Adobe Commerce, Shopify, WooCommerce and Odoo.',
+        icon: 'tabler:shopping-cart',
+      },
+      {
+        title: 'Healthcare integrations',
+        description: 'Connecting pharmacy management systems, CRM and workflow bots for pharmacy businesses.',
+        icon: 'tabler:pill',
+      },
+    ]}
+  />
+
+  <Projects
+    id="work"
+    tagline="Selected work"
+    title="What I've built"
+    subtitle="Most of my work is private, for clients or as personal products. These are anonymized summaries of what I built. I'm happy to walk through architecture and demos on a call."
+    columns={3}
+    items={[
+      {
+        title: 'Pharmacy systems integration',
+        description:
+          'Integrated multiple pharmacy management systems, including Pioneer and Liberty, for a business with 400+ stores. Synced data with GoHighLevel and built RPA bots for repetitive workflows.',
+        image: { src: '~/assets/images/pharmacy-integration.png', alt: 'Pharmacy integration diagram. ' + note },
+        tags: ['Python', 'RPA', 'REST APIs', 'GoHighLevel'],
+      },
+      {
+        title: 'Adobe Commerce: complex builds',
+        description:
+          'A custom box studio, WhatsApp sticker integration, a smart alert dashboard, smart shipping rates for box orders, and mobile OTP login over SMS.',
+        image: { src: '~/assets/images/commerce-builds.png', alt: 'Adobe Commerce builds overview. ' + note },
+        tags: ['Adobe Commerce', 'PHP', 'MySQL', 'Docker'],
+      },
+      {
+        title: 'Multi-LLM routing backend',
+        description:
+          'A prototype that sends each question to the best-suited model, with a dashboard on top for monitoring and iteration.',
+        image: { src: '~/assets/images/ai-routing.png', alt: 'LLM routing diagram. ' + note },
+        tags: ['Python', 'LLM routing', 'FastAPI'],
+      },
+      {
+        title: 'Cloud on AWS',
+        description:
+          'Scheduled jobs with EventBridge and Lambda, email via SES, app servers in private subnets on Auto Scaling, and least-privilege IAM.',
+        image: { src: '~/assets/images/aws-architecture.png', alt: 'AWS reference architecture. ' + note },
+        tags: ['Lambda', 'EventBridge', 'SES', 'IAM', 'Podman'],
+      },
+      {
+        title: 'Automation run monitor',
+        description:
+          'Every bot run is logged. Failures retry, then alert through Telegram, Slack or email, so nothing fails silently.',
+        image: { src: '~/assets/images/rpa-monitor.png', alt: 'Automation run monitor. ' + note },
+        tags: ['Playwright', 'Python', 'Alerting'],
+      },
+      {
+        title: 'Pulse: daily bias engine',
+        description:
+          'Scores seven public market signals into one SENSEX bias, with a VIX gate and a shadow gate side by side. Paper trading only, no broker API.',
+        image: { src: '~/assets/images/pulse-dashboard.png', alt: 'Pulse dashboard mock-up. ' + note },
+        tags: ['Python', 'FastAPI', 'SQLite'],
+      },
+      {
+        title: 'Instagram content engine',
+        description:
+          'LLM-written captions and hooks, branded images, carousels and reels, published via the Graph API with a review dashboard and cron autopilot.',
+        image: { src: '~/assets/images/instagram-engine.png', alt: 'Instagram engine diagram. ' + note },
+        tags: ['Python', 'FastAPI', 'LLMs'],
+      },
+      {
+        title: 'Shorts Factory',
+        description:
+          'A faceless YouTube Shorts pipeline from idea to upload, with a human approval gate at every stage and resumable runs.',
+        image: { src: '~/assets/images/shorts-factory.png', alt: 'Shorts Factory pipeline. ' + note },
+        tags: ['FastAPI', 'FFmpeg', 'SQLite'],
+      },
+      {
+        title: 'LinkedIn agent',
+        description:
+          'Profile scraping, AI-suggested improvements you approve, weekly content planning, branded visuals and auto-posting through Playwright.',
+        image: { src: '~/assets/images/linkedin-agent.png', alt: 'LinkedIn agent diagram. ' + note },
+        tags: ['Playwright', 'LLMs'],
+      },
+    ]}
+  />
+
+  <Projects
+    id="open-source"
+    tagline="Open source"
+    title="Small, useful tools I publish in the open"
+    columns={3}
+    items={[
+      {
+        title: 'agent-risk-annotator',
+        description:
+          'Local-first risk annotations for AI-agent-generated diffs: one line per risky hunk. A CLI, a Claude Code plugin and a GitHub Action.',
+        image: { src: '~/assets/images/oss-agent-risk-annotator.png', alt: 'agent-risk-annotator diagram. ' + note },
+        tags: ['TypeScript', 'Code review', 'MIT'],
+        href: 'https://github.com/jigar48/agent-risk-annotator',
+        linkText: 'View on GitHub',
+      },
+      {
+        title: 'awi (Agent Workflow Inspector)',
+        description:
+          'An offline linter for AI agent traces that flags retry storms, repeated failing calls, cycles and resource burn. Exit codes for CI.',
+        image: { src: '~/assets/images/oss-awi.png', alt: 'awi diagram. ' + note },
+        tags: ['TypeScript', 'OpenTelemetry', 'MIT'],
+        href: 'https://github.com/jigar48/awi',
+        linkText: 'View on GitHub',
+      },
+      {
+        title: 'mcp-agent-mesh',
+        description:
+          'A multi-agent pipeline: an architect, a coder and a security auditor sub-agent with OWASP findings and an optional refine pass.',
+        image: { src: '~/assets/images/oss-mcp-agentmesh.png', alt: 'mcp-agent-mesh diagram. ' + note },
+        tags: ['Python', 'Gemini', 'MIT'],
+        href: 'https://github.com/jigar48/mcp-agentmesh',
+        linkText: 'View on GitHub',
+      },
+      {
+        title: 'logpulse-ai',
+        description:
+          'A terminal log debugger. Masks listed secret patterns locally, asks Gemini for a root cause and a git diff, and exports a post-mortem.',
+        image: { src: '~/assets/images/oss-logpulse-ai.png', alt: 'logpulse-ai diagram. ' + note },
+        tags: ['Python', 'Gemini', 'MIT'],
+        href: 'https://github.com/jigar48/logpulse-ai',
+        linkText: 'View on GitHub',
+      },
+      {
+        title: 'agent-gauntlet',
+        description:
+          'A deterministic, no-LLM audit of a store checkout, run the way an AI shopping agent does. Stops before payment. Early release.',
+        image: { src: '~/assets/images/oss-agent-gauntlet.png', alt: 'agent-gauntlet diagram. ' + note },
+        tags: ['Python', 'Playwright', 'MIT'],
+        href: 'https://github.com/jigar48/agent-gauntlet',
+        linkText: 'View on GitHub',
+      },
+      {
+        title: 'checkout-canary',
+        description:
+          'A config-driven Playwright monitor that walks a store to the payment step on a schedule, alerts you, and publishes a green/red status page.',
+        image: { src: '~/assets/images/oss-checkout-canary.png', alt: 'checkout-canary diagram. ' + note },
+        tags: ['Playwright', 'GitHub Actions'],
+        href: 'https://github.com/jigar48/checkout-canary',
+        linkText: 'View on GitHub',
+      },
+      {
+        title: 'api-contract-diff',
+        description:
+          'Catches removed endpoints, dropped response fields and type changes between OpenAPI specs, with CI-friendly exit codes.',
+        image: { src: '~/assets/images/oss-api-contract-diff.png', alt: 'api-contract-diff diagram. ' + note },
+        tags: ['TypeScript', 'CLI', 'CI'],
+        href: 'https://github.com/jigar48/api-contract-diff',
+        linkText: 'View on GitHub',
+      },
+      {
+        title: 'contact-cta-inspector',
+        description:
+          'A privacy-first Chrome extension that checks WhatsApp, phone and email links on a page, with a redacted report. Offline, no analytics.',
+        image: { src: '~/assets/images/oss-contact-cta-inspector.png', alt: 'contact-cta-inspector diagram. ' + note },
+        tags: ['TypeScript', 'Manifest V3', 'MIT'],
+        href: 'https://github.com/jigar48/contact-cta-inspector',
+        linkText: 'View on GitHub',
+      },
+    ]}
+    callToAction={{ text: 'All repositories', href: 'https://github.com/jigar48?tab=repositories', target: '_blank', variant: 'secondary' }}
+  />
+
+  <Steps
+    id="process"
+    tagline="How I work"
+    title="A simple loop that gets you something real quickly and keeps it running"
+    items={[
+      {
+        title: 'Understand the process',
+        description: 'I map what your team does by hand today and where time is lost.',
+        icon: 'tabler:map-search',
+      },
+      {
+        title: 'Prototype fast',
+        description: 'A working version first, so you react to something real instead of a document.',
+        icon: 'tabler:bolt',
+      },
+      {
+        title: 'Harden and ship',
+        description: 'Error handling, logging, retries and a handover you can run without me.',
+        icon: 'tabler:shield-check',
+      },
+      {
+        title: 'Monitor',
+        description: 'Automation that fails silently is worse than none, so alerts are built in.',
+        icon: 'tabler:bell-ringing',
+      },
+    ]}
+    classes={{ container: 'max-w-3xl' }}
+  />
+
+  <Features3
+    id="stack"
+    tagline="Tech stack"
+    title="The tools I reach for most often"
+    columns={2}
+    defaultIcon="tabler:point-filled"
+    items={[
+      { title: 'Languages & backends', description: 'Python, FastAPI, TypeScript, JavaScript, PHP, SQL, MySQL, SQLite.' },
+      {
+        title: 'Cloud & infrastructure',
+        description:
+          'AWS Lambda, EventBridge, SES, Auto Scaling, IAM, VPC, NAT and security groups. Docker, Podman, Linux, Nginx, GitHub Actions.',
+      },
+      { title: 'Automation', description: 'Playwright, RPA, scheduling, Telegram and Slack alerts, WebSocket feeds.' },
+      { title: 'E-commerce platforms', description: 'Adobe Commerce, Shopify, WooCommerce and Odoo.' },
+    ]}
+  />
+
+  <Content
+    id="about"
+    isReversed
+    tagline="About"
+    title="Hi, I'm Jigar"
+    items={[
+      { title: '2017', description: 'Founded an IT services company and began delivering client projects.' },
+      { title: '2021', description: 'Went freelance: AI automation, pharmacy platforms, cloud deployments and e-commerce stores.' },
+      { title: 'Now', description: 'Moving deeper into AI agents, LLM workflows and AI-powered products.' },
+    ]}
+    image={{
+      src: 'https://avatars.githubusercontent.com/u/16815711?v=4',
+      alt: 'Portrait of Jigar Prajapati',
+    }}
+  >
+    <Fragment slot="content">
+      <p>
+        I'm a freelance software and automation engineer based in Ahmedabad, India. My focus is simple: take a process
+        people do by hand, make it run on its own, and make sure someone is alerted when it doesn't.
+      </p>
+    </Fragment>
+  </Content>
+
+  <CallToAction
+    id="contact"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Hire me on Upwork',
+        href: 'https://www.upwork.com/freelancers/jigarprajapati4',
+        target: '_blank',
+        icon: 'tabler:brand-upwork',
+      },
+      {
+        text: 'Message on LinkedIn',
+        href: 'https://linkedin.com/in/buildaiwith-jigar-prajapati',
+        target: '_blank',
+        icon: 'tabler:brand-linkedin',
+      },
+      { text: 'GitHub', href: 'https://github.com/jigar48', target: '_blank', icon: 'tabler:brand-github' },
+    ]}
+  >
+    <Fragment slot="title">Let's automate something</Fragment>
+    <Fragment slot="subtitle">
+      If you have a repetitive process eating your team's week, or systems that need to talk to each other, tell me about
+      it.
+    </Fragment>
+  </CallToAction>
+</Layout>
